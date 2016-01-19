@@ -89,7 +89,6 @@ if [[ -z $MONGODB_USER ]] || [[ -z $MONGODB_PASSWORD ]]
 
   # Unlock the database
   mongo admin --eval "printjson(db.fsyncUnlock());"
-
 then
   # Lock the database
   mongo -username "$MONGODB_USER" -password "$MONGODB_PASSWORD" admin --eval "var databaseNames = db.getMongo().getDBNames(); for (var i in databaseNames) { printjson(db.getSiblingDB(databaseNames[i]).getCollectionNames()) }; printjson(db.fsyncLock());"
